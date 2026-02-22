@@ -1,14 +1,21 @@
 from flask import Flask, jsonify, url_for, render_template_string, request
 import random
 import pandas as pd
+import joblib
+
 
 app = Flask(__name__)
 
 df = pd.read_csv("rooms.csv")
+model, feature_names = joblib.load("occupancy_model.pkl")
 
-def return_occupancy():
-    occupancy = random.randint(0, 1)
-    return occupancy
+def return_occupancy(room):
+    features_df = pd.DataFrame([[room[f] for f in feature_names]], columns=feature_names)
+    prediction = model.predict(features_df)[0]
+    return int(prediction)
+    
+    prediction = model.predict(features)[0]
+    return int(prediction)
 
 
 @app.route('/', methods=["GET"])
@@ -32,11 +39,11 @@ def get_room(id_value):
     if row.empty:
         return "Room not found", 404
 
-    room = row.iloc[0]
+    room = row.iloc[0]  # Series, yksi rivi
     occupancy_message = ""
 
     if request.method == "POST":
-        occupancy = return_occupancy()
+        occupancy = return_occupancy(room)  # <-- tärkeää lähettää room
         if occupancy == 0:
             occupancy_message = "<p><strong>The room is likely free.</strong></p>"
         else:
