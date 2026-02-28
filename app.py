@@ -78,6 +78,7 @@ def list_rooms():
             <td>{room['Humidity']:.2f} %</td>
             <td>{room['Light']:.0f} lux</td>
             <td>{room['CO2']:.0f} ppm</td>
+            <td>{room['HumidityRatio']:.4f} kgwater-vapor/kg-air</td>
             <td><a class="btn btn-sm btn-primary" href="{link}">Open</a></td>
         </tr>
         """
@@ -106,7 +107,7 @@ def list_rooms():
               <th>Humidity</th>
               <th>Light</th>
               <th>CO₂</th>
-              <th></th>
+              <th>HumidityRatio</th>
             </tr>
           </thead>
           <tbody>
@@ -191,7 +192,7 @@ def get_room(id_value):
               </div>
               <div class="col-6">
                 <div class="metric-label">Humidity ratio</div>
-                <div class="fs-5">{room['HumidityRatio']}</div>
+                <div class="fs-5">{room['HumidityRatio']:.4f}</div>
               </div>
             </div>
 
