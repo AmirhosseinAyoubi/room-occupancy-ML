@@ -1,6 +1,7 @@
 #Project Description
 This system is designed for smart campuses. The problem with large campuses is that there are several classrooms unused. Large buildings require large air conditioning systems. Usually, air conditioning systems are either manually controlled, or the system is the same for the whole building. This causes the air conditioning to spend extra energy even in empty rooms. On the other hand, if a room becomes suddenly occupied, without good ventilation, the room might feel like it’s too hot and lacking air quality.  By estimating the occupancy of the rooms, the air conditioning system could be optimized by focusing it on rooms that are most likely to be occupied.
 
+```
 AI component workflow:
 Dataset
    |
@@ -26,6 +27,7 @@ Deployment
    ^
    |
 Monitoring / retraining
+````
 
 #How to run the project
 
